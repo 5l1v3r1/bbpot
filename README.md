@@ -1,49 +1,43 @@
-# Drupot
-Drupal Honeypot
+# bbpot
+phpBB Honeypot
 
 ## Installation
-Drupot supports go modules. 
+bbpot supports go modules. 
 
-`go get github.com/d1str0/Drupot`
+`go get github.com/d1str0/bbpot`
 
 `go build`
 
-## Running Drupot
-`./drupot -c config.toml`
+## Running bbpot
+`./bbpot -c config.toml`
 
 ## Configuration
 `config.toml.example` contains an example of *all* currently available
 configuration options.
 
-### Drupal
-    [drupal]
+### phpBB
+    [phpbb]
     port = 80
-    changelog_filepath = "changelogs/CHANGELOG-7.63.txt"
 
 `port` allows you to set the http port to listen on. Currently, this is only ever
 served over http. Future versions will support https.
-
-`changelog_filepath` allows you to set what exactly is returned in the
-/CHANGELOG.txt file. This allows you to save multiple versions of the CHANGELOG
-and serve them at different times. This allows you to mimic different versions
-of Drupal.
 
 ### hpfeeds
     [hpfeeds]
     enabled = true
     host = "hpfeeds.threatstream.com"
     port = 10000
-    ident = "drupot"
+    ident = "bbpot"
     auth = "somesecret"
-    channel = "drupot.events"
-    meta = "Drupal scan event detected"
+    channel = "bbpot.events"
+    meta = "phpBB scan event detected"
 
 hpfeeds can be enabled for logging if wanted. Supply host, port, ident, auth,
 and channel information relevant to an hpfeeds broker you want to report to. 
 
-`meta` provides a static string to send in every hpfeeds request. Could be use
-to differentiate Drupal versions hosted by honeypot or used to differentiate
-Drupot data in busy hpfeeds channels.
+`meta` provides a static string to send in every hpfeeds request. Could be used
+to differentiate phpBB versions hosted by honeypot or used to differentiate
+bbpot data in busy hpfeeds channels.
 
 ### Fetch Public IP
     [fetch_public_ip]
@@ -51,6 +45,6 @@ Drupot data in busy hpfeeds channels.
     urls = ["http://icanhazip.com/", "http://ifconfig.me/ip"]
 
 
-If enabled, Drupot will attempt to fetch the public IP of itself from the listed
-URLs. If enabled and no public IP can be fetched, Drupot will quit.
+If enabled, bbpot will attempt to fetch the public IP of itself from the listed
+URLs. If enabled and no public IP can be fetched, bbpot will quit.
 
